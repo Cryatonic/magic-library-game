@@ -17,8 +17,8 @@ signal click_interaction(_click_obj : Node)
 
 var showing_spine : bool = false
 var flip_button_x_offset : Array[int] = [-16, -4]
-var section_tag_val : int = 0
-var shelf_location : Array[int] = [0,0,0]
+@export var section_tag_val : int = 0
+@export var shelf_location : Array[int] = [0,0,0] #bookcase number; shelf number; shelf position
 var previous_glob_pos : Vector2
 var pos_to_go : Vector2
 
@@ -56,14 +56,23 @@ func flip_book(show_spine : bool = false) -> void:
 		book_label.visible = show_spine
 		global_position = Vector2.ZERO
 		set_deferred("scale", scales[3])
-		get_node("MouseHandle").is_clickable = false
+		
+		get_tree().get_first_node_in_group("MouseHandler").emit_signal("toggle_all", false)
+		
+		for obj in $"../../".get_node("BookContainer").get_children():
+			if obj != self and obj is Book:
+				obj.flip_book_button.disabled = true
 	else:
 		sprite_2d.region_rect.position.x = 0
 		flip_book_button.position.x = flip_button_x_offset[0]
 		book_label.visible = show_spine
 		global_position = previous_glob_pos
 		set_deferred("scale", curr_scale)
-		get_node("MouseHandle").is_clickable = true
+		
+		get_tree().get_first_node_in_group("MouseHandler").emit_signal("toggle_all", true)
+		for obj in $"../../".get_node("BookContainer").get_children():
+			if obj != self and obj is Book:
+				obj.flip_book_button.disabled = false
 		
 func move_book(pos : Vector2 = previous_glob_pos):
 	kill_tween()
@@ -71,6 +80,7 @@ func move_book(pos : Vector2 = previous_glob_pos):
 	tween.tween_property(self, "global_position", pos_to_go, 0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	moving = true
 	set_book_scale(0)
+	sprite_2d.z_index = 1
 	
 func kill_tween() -> void:
 	if tween:
@@ -87,6 +97,7 @@ func _on_button_pressed() -> void:
 
 func _on_finished_moving() -> void:
 	moving = false
+	sprite_2d.z_index = 0
 	if slot != null:
 		set_book_scale(2)
 
@@ -102,5 +113,7 @@ func _on_on_click() -> void:
 func _on_click_interaction(_click_obj: Node) -> void:
 	if _click_obj is CartSlot:
 		slot = _click_obj
+	elif _click_obj is Book:
+		pass
 	else:
 		slot = null

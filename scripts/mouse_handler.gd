@@ -7,6 +7,8 @@ signal hovering(hov_obj : Node, is_hover : bool)
 signal click(click_obj : Node)
 signal deselect
 
+signal toggle_all(t : bool)
+
 var hovering_objs : Array[Node] = []
 var clicked_obj : Node = null
 
@@ -20,7 +22,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and hovering_objs.size() != 0:
-		var priority_hov_obj : Variant = hovering_objs[0]
+		var priority_hov_obj : Node = hovering_objs[0]
 		if hovering_objs.size() > 1:
 			for obj in hovering_objs:
 				if obj.process_priority > priority_hov_obj.process_priority:
@@ -47,3 +49,7 @@ func _on_click(click_obj: Node) -> void:
 func _on_deselect(obj : Node) -> void:
 	obj.emit_signal("on_deselect")
 	clicked_obj = null
+
+func _on_toggle_all(t : bool) -> void:
+	for mh in get_tree().get_nodes_in_group("MouseHandle"):
+		mh.set_deferred("input_pickable", t)

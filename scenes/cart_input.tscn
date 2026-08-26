@@ -52,8 +52,13 @@ position = Vector2(899.50006, -0.50000286)
 scale = Vector2(18.78125, 50.03125)
 texture = ExtResource("5_ejo0x")
 
-[node name="Book" parent="BookContainer" unique_id=1188724431 instance=ExtResource("2_0wo8y")]
+[node name="Book1" parent="BookContainer" unique_id=1188724431 instance=ExtResource("2_0wo8y")]
 position = Vector2(924, 0)
+
+[node name="Book2" parent="BookContainer" unique_id=1231038646 instance=ExtResource("2_0wo8y")]
+position = Vector2(923, 405)
+section_tag_val = 1
+shelf_location = Array[int]([10, 1, 1])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=298744316]
 

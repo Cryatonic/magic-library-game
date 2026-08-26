@@ -15,8 +15,6 @@ signal on_deselect
 var mouse_hover : bool = false
 var opacity_when_hovered : int = 95
 
-var held_book : Book = null
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -29,12 +27,6 @@ func _process(_delta: float) -> void:
 	elif slot_sprite.self_modulate.a8 == opacity_when_hovered and not mouse_hover:
 		slot_sprite.self_modulate.a8 = 0
 	
-func add_book(book : Book) -> void:
-	held_book = book
-	
-func remove_book() -> void:
-	held_book = null
-
 func _on_mouse_handle_mouse_entered() -> void:
 	mouse_hover = true
 
