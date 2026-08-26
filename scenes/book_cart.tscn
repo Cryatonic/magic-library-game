@@ -1,0 +1,137 @@
+[gd_scene format=4 uid="uid://cj4dkp3r0w3nm"]
+
+[ext_resource type="Script" uid="uid://dhlb3nm77jpsf" path="res://scripts/book_cart.gd" id="1_d8w2g"]
+[ext_resource type="Texture2D" uid="uid://bxrjkc5gaaifr" path="res://assets/sprites/cart-tile-map.png" id="1_ud5ku"]
+[ext_resource type="PackedScene" uid="uid://dgm8lws0akd3a" path="res://scenes/cart_slot.tscn" id="2_2xnqk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c61wa"]
+resource_name = "cart"
+texture = ExtResource("1_ud5ku")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_g46t1"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "CartTerrain"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_c61wa")
+
+[node name="BookCart" type="Node2D" unique_id=1150301586]
+script = ExtResource("1_d8w2g")
+
+[node name="CartTiles" type="TileMapLayer" parent="." unique_id=1486848607]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAACAAEAAAACAAIAAAACAAAAAAACAAEAAAACAP//AAACAAEAAAACAP7/AAACAAEAAAACAP3/AAACAAAAAAABAAEAAAABAAIAAAABAAAAAAABAAEAAAABAP//AAABAAEAAAABAP7/AAABAAEAAAABAP3/AAABAAAAAAAAAAEAAAABAAIAAAAAAAAAAAABAAEAAAAAAP//AAABAAEAAAAAAP7/AAABAAEAAAAAAP3/AAABAAAAAAD//wEAAAABAAIAAAD//wAAAAABAAEAAAD/////AAABAAEAAAD///7/AAABAAEAAAD///3/AAABAAAAAAD+/wEAAAABAAIAAAD+/wAAAAABAAEAAAD+////AAABAAEAAAD+//7/AAABAAEAAAD+//3/AAABAAAAAAD9/wEAAAAAAAIAAAD9/wAAAAAAAAEAAAD9////AAAAAAEAAAD9//7/AAAAAAEAAAD9//3/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_g46t1")
+
+[node name="CartGrid" type="GridContainer" parent="." unique_id=1379814552]
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 80.0
+offset_bottom = 64.0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 4
+
+[node name="CartSlot1-1" parent="CartGrid" unique_id=1332509839 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot1-2" parent="CartGrid" unique_id=1167356204 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot1-3" parent="CartGrid" unique_id=355845215 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot1-4" parent="CartGrid" unique_id=922267616 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot2-1" parent="CartGrid" unique_id=2146486197 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot2-2" parent="CartGrid" unique_id=1420607243 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot2-3" parent="CartGrid" unique_id=168010142 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot2-4" parent="CartGrid" unique_id=172482217 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot3-1" parent="CartGrid" unique_id=692417365 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot3-2" parent="CartGrid" unique_id=2140673688 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot3-3" parent="CartGrid" unique_id=1311988611 instance=ExtResource("2_2xnqk")]
+layout_mode = 2
+
+[node name="CartSlot3-4" parent="CartGrid" unique_id=1482821104 instance=ExtResource("2_2xnqk")]
+layout_mode = 2

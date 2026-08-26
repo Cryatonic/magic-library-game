@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dgm8lws0akd3a"]
+
+[ext_resource type="Script" uid="uid://xvf868nujlvt" path="res://scripts/cart_slot.gd" id="1_7jck4"]
+[ext_resource type="Texture2D" uid="uid://c500wrvxvaqw1" path="res://assets/sprites/blank-white.png" id="2_3f3o0"]
+[ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_3f3o0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqpan"]
+size = Vector2(30, 30)
+
+[node name="CartSlot" type="Control" unique_id=1332509839]
+process_priority = 1
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_7jck4")
+
+[node name="SlotSprite" type="Sprite2D" parent="." unique_id=414077901]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_3f3o0")
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="MouseHandle" parent="." unique_id=191069512 instance=ExtResource("3_3f3o0")]
+is_clickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHandle" unique_id=852805365]
+shape = SubResource("RectangleShape2D_wqpan")
+
+[connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
+[connection signal="on_click" from="." to="." method="_on_on_click"]
+[connection signal="on_deselect" from="." to="." method="_on_on_deselect"]
+[connection signal="mouse_entered" from="MouseHandle" to="." method="_on_mouse_handle_mouse_entered"]
+[connection signal="mouse_exited" from="MouseHandle" to="." method="_on_mouse_handle_mouse_exited"]

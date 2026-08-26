@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ddodhh83g4f13"]
+
+[ext_resource type="Script" uid="uid://elg80c45b277" path="res://scripts/mouse_handler.gd" id="1_1mrws"]
+
+[node name="MouseHandler" type="Node" unique_id=516405391 groups=["MouseHandler"]]
+script = ExtResource("1_1mrws")
+
+[connection signal="click" from="." to="." method="_on_click"]
+[connection signal="deselect" from="." to="." method="_on_deselect"]
+[connection signal="hovering" from="." to="." method="_on_hovering"]

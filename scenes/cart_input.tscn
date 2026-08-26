@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://8f7poyhabmxa"]
+
+[ext_resource type="Script" uid="uid://lu1pw2ha0yop" path="res://scripts/cart_input.gd" id="1_0wo8y"]
+[ext_resource type="PackedScene" uid="uid://cj4dkp3r0w3nm" path="res://scenes/book_cart.tscn" id="1_pud11"]
+[ext_resource type="PackedScene" uid="uid://cj1wwxgpl60d5" path="res://scenes/book.tscn" id="2_0wo8y"]
+[ext_resource type="Script" uid="uid://diksq17udq2j0" path="res://scripts/book_area.gd" id="3_gtp0x"]
+[ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_qinp5"]
+[ext_resource type="PackedScene" uid="uid://ddodhh83g4f13" path="res://scenes/mouse_handler.tscn" id="4_eb1uu"]
+[ext_resource type="FontFile" uid="uid://ciak3c287qkl3" path="res://assets/fonts/PixelOperator8.ttf" id="4_h6ce6"]
+[ext_resource type="Texture2D" uid="uid://c500wrvxvaqw1" path="res://assets/sprites/blank-white.png" id="5_ejo0x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1scci"]
+font = ExtResource("4_h6ce6")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
+size = Vector2(600, 1600)
+
+[node name="CartInput" type="Node2D" unique_id=357440943]
+script = ExtResource("1_0wo8y")
+
+[node name="BookCart" parent="." unique_id=1150301586 instance=ExtResource("1_pud11")]
+position = Vector2(-256, 0)
+scale = Vector2(10, 10)
+
+[node name="BookContainer" type="Node2D" parent="." unique_id=810136146]
+
+[node name="BookArea" type="Node2D" parent="BookContainer" unique_id=2006242449]
+script = ExtResource("3_gtp0x")
+
+[node name="BALabel" type="Label" parent="BookContainer/BookArea" unique_id=1314438062]
+offset_left = 656.0
+offset_top = -746.0
+offset_right = 1136.0
+offset_bottom = -615.0
+text = "Book Area
+"
+label_settings = SubResource("LabelSettings_1scci")
+
+[node name="MouseHandle" parent="BookContainer/BookArea" unique_id=191069512 instance=ExtResource("3_qinp5")]
+is_clickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BookContainer/BookArea/MouseHandle" unique_id=1895306825]
+position = Vector2(900, 0)
+shape = SubResource("RectangleShape2D_1scci")
+
+[node name="AreaBackground" type="Sprite2D" parent="BookContainer/BookArea" unique_id=2138991470]
+self_modulate = Color(0.48973578, 0.3278106, 0.13953564, 1)
+z_index = -1
+position = Vector2(899.50006, -0.50000286)
+scale = Vector2(18.78125, 50.03125)
+texture = ExtResource("5_ejo0x")
+
+[node name="Book" parent="BookContainer" unique_id=1188724431 instance=ExtResource("2_0wo8y")]
+position = Vector2(924, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=298744316]
+
+[node name="MouseHandler" parent="." unique_id=516405391 instance=ExtResource("4_eb1uu")]
+
+[connection signal="click_interaction" from="BookContainer/BookArea" to="BookContainer/BookArea" method="_on_click_interaction"]
+[connection signal="on_click" from="BookContainer/BookArea" to="BookContainer/BookArea" method="_on_on_click"]
+[connection signal="on_deselect" from="BookContainer/BookArea" to="BookContainer/BookArea" method="_on_on_deselect"]
