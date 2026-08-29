@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ejluvaxucwbw"]
+
+[ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="1_135oh"]
+[ext_resource type="Script" uid="uid://dje266k7tv3rg" path="res://scripts/bookcase_slot.gd" id="1_prudj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
+size = Vector2(8, 32)
+
+[node name="bookcase_slot" type="Control" unique_id=1024175510]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_prudj")
+
+[node name="MouseHandle" parent="." unique_id=191069512 instance=ExtResource("1_135oh")]
+is_clickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHandle" unique_id=74662914]
+shape = SubResource("RectangleShape2D_1scci")
+
+[connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
+[connection signal="on_click" from="." to="." method="_on_on_click"]
+[connection signal="on_deselect" from="." to="." method="_on_on_deselect"]

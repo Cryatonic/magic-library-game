@@ -5,7 +5,7 @@ class_name MouseHandler
 signal hovering(hov_obj : Node, is_hover : bool)
 @warning_ignore("unused_signal")
 signal click(click_obj : Node)
-signal deselect
+signal deselect(obj : Node)
 
 signal toggle_all(t : bool)
 

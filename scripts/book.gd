@@ -14,15 +14,19 @@ signal click_interaction(_click_obj : Node)
 @onready var book_label: Node2D = $BookLabel
 @onready var section_tag_sprite: Sprite2D = $BookLabel/SectionTagSprite
 @onready var location_label: Label = $BookLabel/SectionTagSprite/LocationLabel
+@onready var mouse_handle: MouseHandle = $MouseHandle
 
 var showing_spine : bool = false
 var flip_button_x_offset : Array[int] = [-16, -4]
+var base_click_area_dimensions : Array[Vector2] = [Vector2(160,300), Vector2(20,0)] #size, position
+var spine_click_area_dimensions : Array[Vector2] = [Vector2(80,300), Vector2(0,0)] #size, position
 @export var section_tag_val : int = 0
 @export var shelf_location : Array[int] = [0,0,0] #bookcase number; shelf number; shelf position
 var previous_glob_pos : Vector2
 var pos_to_go : Vector2
 
-var slot : CartSlot = null
+var slot : Node = null
+var slot_facing : float = 0.0
 
 var moving : bool = false
 
@@ -56,20 +60,22 @@ func flip_book(show_spine : bool = false) -> void:
 		book_label.visible = show_spine
 		global_position = Vector2.ZERO
 		set_deferred("scale", scales[3])
+		change_mouse_click_area(1.0)
 		
-		get_tree().get_first_node_in_group("MouseHandler").emit_signal("toggle_all", false)
+		MHandler.emit_signal("toggle_all", false)
 		
 		for obj in $"../../".get_node("BookContainer").get_children():
 			if obj != self and obj is Book:
 				obj.flip_book_button.disabled = true
 	else:
-		sprite_2d.region_rect.position.x = 0
+		sprite_2d.region_rect.position.x = slot_facing
 		flip_book_button.position.x = flip_button_x_offset[0]
 		book_label.visible = show_spine
 		global_position = previous_glob_pos
 		set_deferred("scale", curr_scale)
+		change_mouse_click_area()
 		
-		get_tree().get_first_node_in_group("MouseHandler").emit_signal("toggle_all", true)
+		MHandler.emit_signal("toggle_all", true)
 		for obj in $"../../".get_node("BookContainer").get_children():
 			if obj != self and obj is Book:
 				obj.flip_book_button.disabled = false
@@ -91,6 +97,14 @@ func set_book_scale(val : int) -> void:
 	curr_scale = scales[val]
 	set_deferred("scale", curr_scale)
 
+func change_mouse_click_area(s_f : float = slot_facing) -> void:
+	if s_f == 0:
+		mouse_handle.get_node("CollisionShape2D").size = base_click_area_dimensions[0]
+		mouse_handle.get_node("CollisionShape2D").position = base_click_area_dimensions[1]
+	else:
+		mouse_handle.get_node("CollisionShape2D").position = spine_click_area_dimensions[0]
+		mouse_handle.get_node("CollisionShape2D").position = spine_click_area_dimensions[1]
+
 func _on_button_pressed() -> void:
 	showing_spine = !showing_spine
 	flip_book(showing_spine)
@@ -99,21 +113,35 @@ func _on_finished_moving() -> void:
 	moving = false
 	sprite_2d.z_index = 0
 	if slot != null:
-		set_book_scale(2)
+		set_book_scale(slot.slotted_book_mod)
+		sprite_2d.region_rect.position.x = slot_facing
+		change_mouse_click_area()
 
 func _on_on_deselect() -> void:
 	if slot != null and not moving:
-		set_book_scale(2)
+		set_book_scale(slot.slotted_book_mod)
+		sprite_2d.region_rect.position.x = slot_facing
+		change_mouse_click_area()
+		if slot is Bookcase_Slot:
+			flip_book_button.disabled = true
 	else:
 		set_book_scale(0)
 
 func _on_on_click() -> void:
 	set_book_scale(1)
+	sprite_2d.region_rect.position.x = 0
+	flip_book_button.disabled = false
 
 func _on_click_interaction(_click_obj: Node) -> void:
-	if _click_obj is CartSlot:
+	if _click_obj is CartSlot or _click_obj is Bookcase_Slot:
 		slot = _click_obj
+		if slot is Bookcase_Slot:
+			slot_facing = sprite_2d.region_rect.size.x
+			flip_book_button.disabled = true
+		else:
+			slot_facing = 0
 	elif _click_obj is Book:
 		pass
 	else:
 		slot = null
+		slot_facing = 0

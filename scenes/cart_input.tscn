@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cj1wwxgpl60d5" path="res://scenes/book.tscn" id="2_0wo8y"]
 [ext_resource type="Script" uid="uid://diksq17udq2j0" path="res://scripts/book_area.gd" id="3_gtp0x"]
 [ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_qinp5"]
-[ext_resource type="PackedScene" uid="uid://ddodhh83g4f13" path="res://scenes/mouse_handler.tscn" id="4_eb1uu"]
 [ext_resource type="FontFile" uid="uid://ciak3c287qkl3" path="res://assets/fonts/PixelOperator8.ttf" id="4_h6ce6"]
 [ext_resource type="Texture2D" uid="uid://c500wrvxvaqw1" path="res://assets/sprites/blank-white.png" id="5_ejo0x"]
 
@@ -61,8 +60,6 @@ section_tag_val = 1
 shelf_location = Array[int]([10, 1, 1])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=298744316]
-
-[node name="MouseHandler" parent="." unique_id=516405391 instance=ExtResource("4_eb1uu")]
 
 [connection signal="click_interaction" from="BookContainer/BookArea" to="BookContainer/BookArea" method="_on_click_interaction"]
 [connection signal="on_click" from="BookContainer/BookArea" to="BookContainer/BookArea" method="_on_on_click"]

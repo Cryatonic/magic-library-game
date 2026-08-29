@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dsfdpw5oyeusa"]
+
+[ext_resource type="Texture2D" uid="uid://rcg6khjrnfco" path="res://assets/sprites/bookcase.png" id="1_lfbyu"]
+[ext_resource type="PackedScene" uid="uid://ejluvaxucwbw" path="res://scenes/bookcase_slot.tscn" id="2_5cwc3"]
+
+[node name="Bookcase" type="Node2D" unique_id=301247951]
+scale = Vector2(10, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1938961248]
+texture = ExtResource("1_lfbyu")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1130829514]
+offset_left = -23.999998
+offset_top = -34.1
+offset_right = 16.000002
+offset_bottom = 5.9000015
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 34
+columns = 5
+
+[node name="slot1-1" parent="GridContainer" unique_id=1024175510 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot1-2" parent="GridContainer" unique_id=1335990378 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot1-3" parent="GridContainer" unique_id=637916544 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot1-4" parent="GridContainer" unique_id=1771594970 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot1-5" parent="GridContainer" unique_id=375472852 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot2-1" parent="GridContainer" unique_id=1442026970 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot2-2" parent="GridContainer" unique_id=494085881 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot2-3" parent="GridContainer" unique_id=324530742 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot2-4" parent="GridContainer" unique_id=611961118 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot2-5" parent="GridContainer" unique_id=1391114681 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot3-1" parent="GridContainer" unique_id=2017155726 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot3-2" parent="GridContainer" unique_id=2073770011 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot3-3" parent="GridContainer" unique_id=461066947 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot3-4" parent="GridContainer" unique_id=740000042 instance=ExtResource("2_5cwc3")]
+layout_mode = 2
+
+[node name="slot3-5" parent="GridContainer" unique_id=99526601 instance=ExtResource("2_5cwc3")]
+layout_mode = 2

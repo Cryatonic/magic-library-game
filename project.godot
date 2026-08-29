@@ -18,6 +18,10 @@ config/name="Magic Library Game"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MHandler="*uid://ddodhh83g4f13"
+
 [display]
 
 window/size/viewport_width=2400
@@ -28,10 +32,6 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="Magic Library Game"
-
-[global_group]
-
-MouseHandler=""
 
 [input]
 

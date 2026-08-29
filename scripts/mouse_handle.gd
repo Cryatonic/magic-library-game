@@ -18,10 +18,10 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_mouse_entered() -> void:
-	get_tree().get_first_node_in_group("MouseHandler").emit_signal("hovering", parent, true)
+	MHandler.emit_signal("hovering", parent, true)
 
 func _on_mouse_exited() -> void:
-	get_tree().get_first_node_in_group("MouseHandler").emit_signal("hovering", parent, false)
+	MHandler.emit_signal("hovering", parent, false)
 
 func _on_clickable() -> bool:
 	return is_clickable
