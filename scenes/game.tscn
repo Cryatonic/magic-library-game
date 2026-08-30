@@ -11,6 +11,8 @@ size = Vector2(2400, 128)
 [node name="Game" type="Node2D" unique_id=162125047]
 script = ExtResource("1_lbhrr")
 
+[node name="BookContainer" type="Node2D" parent="." unique_id=644659472 groups=["BookContainer"]]
+
 [node name="Bookcase_Input" parent="." unique_id=670357596 instance=ExtResource("1_yqjtg")]
 
 [node name="BookCart" parent="." unique_id=1150301586 instance=ExtResource("2_yqjtg")]
