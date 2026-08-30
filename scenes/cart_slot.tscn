@@ -13,6 +13,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_7jck4")
+slotted_book_mod = 2
 
 [node name="SlotSprite" type="Sprite2D" parent="." unique_id=414077901]
 modulate = Color(0, 0, 0, 1)

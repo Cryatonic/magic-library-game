@@ -23,7 +23,7 @@ func _on_click_interaction(_click_obj: Variant) -> void:
 		_click_obj.move_book(get_global_mouse_position())
 
 func _on_on_click() -> void:
-	get_tree().get_first_node_in_group("MouseHandler").emit_signal("deselect", self)
+	MHandler.emit_signal("deselect", self)
 
 func _on_on_deselect() -> void:
 	pass # Replace with function body.

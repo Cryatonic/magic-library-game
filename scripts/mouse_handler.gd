@@ -36,6 +36,9 @@ func _input(event: InputEvent) -> void:
 				priority_hov_obj.emit_signal("click_interaction", clicked_obj)
 				clicked_obj.emit_signal("click_interaction", priority_hov_obj)
 				emit_signal("deselect", clicked_obj)
+	if Input.is_action_just_pressed("action") and clicked_obj is Book:
+		clicked_obj.showing_spine = !clicked_obj.showing_spine
+		clicked_obj.flip_book(clicked_obj.showing_spine)
 
 func _on_hovering(hov_obj: Node, is_hover : bool) -> void:
 	if is_hover:

@@ -20,7 +20,8 @@
 font = ExtResource("4_sm5br")
 font_size = 8
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqpan"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01hes"]
+resource_local_to_scene = true
 size = Vector2(160, 300)
 
 [node name="Book" type="Node2D" unique_id=1188724431]
@@ -34,6 +35,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="FlipBookButton" type="Button" parent="BookSprite" unique_id=88056683]
+visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = -8.0
@@ -45,9 +47,11 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3wpgy")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ble1a")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_sm5br")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_01hes")
+disabled = true
 
 [node name="BookLabel" type="Node2D" parent="." unique_id=1839856393]
 visible = false
+z_index = 2
 position = Vector2(0, 96)
 
 [node name="SectionTagSprite" type="Sprite2D" parent="BookLabel" unique_id=1964608955]
@@ -76,7 +80,7 @@ is_clickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHandle" unique_id=455564279]
 position = Vector2(20, 0)
-shape = SubResource("RectangleShape2D_wqpan")
+shape = SubResource("RectangleShape2D_01hes")
 
 [connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
 [connection signal="finished_moving" from="." to="." method="_on_finished_moving"]
