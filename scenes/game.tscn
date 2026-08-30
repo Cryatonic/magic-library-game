@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bxnimct2pu8b1"]
+
+[ext_resource type="Script" uid="uid://ddv1ligvrbsnp" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://befbd7irtfmu5" path="res://scenes/bookcase_input.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cj4dkp3r0w3nm" path="res://scenes/book_cart.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_lnu2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
+size = Vector2(2400, 128)
+
+[node name="Game" type="Node2D" unique_id=162125047]
+script = ExtResource("1_lbhrr")
+
+[node name="Bookcase_Input" parent="." unique_id=670357596 instance=ExtResource("1_yqjtg")]
+
+[node name="BookCart" parent="." unique_id=1150301586 instance=ExtResource("2_yqjtg")]
+position = Vector2(0, 1500)
+scale = Vector2(10, 10)
+
+[node name="GameCam" type="Camera2D" parent="." unique_id=884990674 groups=["GameCam"]]
+
+[node name="DownArea" parent="GameCam" unique_id=191069512 instance=ExtResource("3_lnu2h")]
+position = Vector2(0, 687)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/DownArea" unique_id=1660796361]
+shape = SubResource("RectangleShape2D_1scci")
+
+[node name="UpArea" parent="GameCam" unique_id=154965866 instance=ExtResource("3_lnu2h")]
+position = Vector2(0, -687)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/UpArea" unique_id=1817662758]
+shape = SubResource("RectangleShape2D_1scci")
+
+[connection signal="mouse_entered" from="GameCam/DownArea" to="." method="_on_down_area_mouse_entered"]
+[connection signal="mouse_entered" from="GameCam/UpArea" to="." method="_on_up_area_mouse_entered"]

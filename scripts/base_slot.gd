@@ -22,6 +22,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
-	#if pos_to_slot != global_position + pos_offset:
-		#pos_to_slot = global_position + pos_offset
+	#pass
+	if pos_to_slot != global_position + pos_offset:
+		pos_to_slot = global_position + pos_offset

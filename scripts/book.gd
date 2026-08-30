@@ -58,7 +58,7 @@ func flip_book(show_spine : bool = false) -> void:
 		sprite_2d.region_rect.position.x = sprite_2d.region_rect.size.x
 		flip_book_button.position.x = flip_button_x_offset[1]
 		book_label.visible = show_spine
-		global_position = Vector2.ZERO
+		global_position = get_tree().get_first_node_in_group("GameCam").global_position
 		set_deferred("scale", scales[3])
 		change_mouse_click_area(1.0)
 		

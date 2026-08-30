@@ -19,6 +19,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not spawned_books:
 		var bci_bc = get_tree().get_first_node_in_group("Bookcase_Input").get_node("BookContainer")
+		var col : int = grid_container.columns
 		
 		var shelf_spot : int = 0
 		for s : Bookcase_Slot in grid_container.get_children():
@@ -27,8 +28,8 @@ func _process(_delta: float) -> void:
 			b.section_tag_val = section_tag_index
 			b.shelf_location[0] = case_num
 			@warning_ignore("integer_division")
-			b.shelf_location[1] = (shelf_spot / 5) + 1
-			b.shelf_location[2] = (shelf_spot % 5) + 1
+			b.shelf_location[1] = (shelf_spot / col) + 1
+			b.shelf_location[2] = (shelf_spot % col) + 1
 			
 			var red = randf_range(0.2,1.0)
 			var green = randf_range(0.2,1.0)

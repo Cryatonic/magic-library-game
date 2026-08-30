@@ -2,11 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dsfdpw5oyeusa" path="res://scenes/bookcase.tscn" id="1_6petg"]
 
-[node name="bookcase_input" type="Node2D" unique_id=670357596 groups=["Bookcase_Input"]]
+[node name="Bookcase_Input" type="Node2D" unique_id=670357596 groups=["Bookcase_Input"]]
 
 [node name="BookContainer" type="Node2D" parent="." unique_id=1989765896]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1895659920]
 
 [node name="Bookcase1" parent="." unique_id=561842236 instance=ExtResource("1_6petg")]
 position = Vector2(-704, 0)

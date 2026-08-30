@@ -28,14 +28,15 @@ func _input(event: InputEvent) -> void:
 				if obj.process_priority > priority_hov_obj.process_priority:
 					priority_hov_obj = obj
 			#hovering_objs.pop_at(hovering_objs.find(priority_hov_obj))
-		if priority_hov_obj.get_node("MouseHandle").is_clickable:
-			if clicked_obj == null:
-				emit_signal("click", priority_hov_obj)
-				priority_hov_obj.emit_signal("on_click")
-			else:
-				priority_hov_obj.emit_signal("click_interaction", clicked_obj)
-				clicked_obj.emit_signal("click_interaction", priority_hov_obj)
-				emit_signal("deselect", clicked_obj)
+		if priority_hov_obj.has_node("MouseHandle"):
+			if priority_hov_obj.get_node("MouseHandle").is_clickable:
+				if clicked_obj == null:
+					emit_signal("click", priority_hov_obj)
+					priority_hov_obj.emit_signal("on_click")
+				else:
+					priority_hov_obj.emit_signal("click_interaction", clicked_obj)
+					clicked_obj.emit_signal("click_interaction", priority_hov_obj)
+					emit_signal("deselect", clicked_obj)
 	if Input.is_action_just_pressed("action") and clicked_obj is Book:
 		clicked_obj.showing_spine = !clicked_obj.showing_spine
 		clicked_obj.flip_book(clicked_obj.showing_spine)
