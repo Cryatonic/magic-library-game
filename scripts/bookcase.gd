@@ -30,11 +30,12 @@ func _process(_delta: float) -> void:
 			@warning_ignore("integer_division")
 			b.shelf_location[1] = (shelf_spot / col) + 1
 			b.shelf_location[2] = (shelf_spot % col) + 1
+			@warning_ignore("integer_division")
+			test_add_tags(shelf_spot % col, shelf_spot / col, b)
 			
 			var red = randf_range(0.2,1.0)
 			var green = randf_range(0.2,1.0)
 			var blue = randf_range(0.2,1.0)
-			#b.set_deferred("modulate", Color(red,green,blue,1.0))
 			
 			bci_bc.add_child(b)
 			b.sprite_2d.modulate = Color(red,green,blue,1.0)
@@ -44,3 +45,13 @@ func _process(_delta: float) -> void:
 			shelf_spot += 1
 		
 		spawned_books = true
+
+func test_add_tags(val : int, stren : int, b : Book) -> void:
+	if val == 1:
+		b.add_tag(["fire", stren + 1, true])
+	elif val == 2:
+		b.add_tag(["stone"])
+	elif val == 3:
+		b.add_tag(["water", stren + 1])
+	elif val == 4:
+		b.add_tag(["void", stren + 1])

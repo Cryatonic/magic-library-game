@@ -95,8 +95,8 @@ tile_set = SubResource("TileSet_g46t1")
 [node name="CartGrid" type="GridContainer" parent="." unique_id=1379814552]
 offset_left = -48.0
 offset_top = -32.0
-offset_right = 80.0
-offset_bottom = 64.0
+offset_right = 48.0
+offset_bottom = 32.0
 theme_override_constants/h_separation = 32
 theme_override_constants/v_separation = 32
 columns = 4

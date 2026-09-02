@@ -25,6 +25,8 @@ var spine_click_area_dimensions : Array[Vector2] = [Vector2(80,300), Vector2(0,0
 var previous_glob_pos : Vector2
 var pos_to_go : Vector2
 
+@export var tags : Array[Array] = []
+
 var slot : Node = null
 var slot_facing : float = 0.0
 
@@ -49,9 +51,9 @@ func _process(_delta: float) -> void:
 	if not showing_spine:
 		previous_glob_pos = global_position
 
-func _input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("debug"):
-		print(slot)
+#func _input(_event: InputEvent) -> void:
+	#if _event.is_action_pressed("debug"):
+		#print(slot)
 
 func flip_book(show_spine : bool = false) -> void:
 	if show_spine:
@@ -138,10 +140,16 @@ func _on_on_click() -> void:
 
 func _on_click_interaction(_click_obj: Node) -> void:
 	if _click_obj is BaseSlot:
+		if slot != null:
+			if slot is CartSlot:
+				slot.parent_cart.fill_slots_w_tags(slot, tags, true)
 		slot_book(_click_obj)
 	elif _click_obj is Book:
 		pass
 	else:
+		if slot != null:
+			if slot is CartSlot:
+				slot.parent_cart.fill_slots_w_tags(slot, tags, true)
 		slot = null
 		slot_facing = 0
 
@@ -152,3 +160,17 @@ func slot_book(s : BaseSlot):
 		slot_facing = sprite_2d.region_rect.size.x
 	else:
 		slot_facing = 0
+
+func add_tag(tag : Array) -> void:
+	tags.append(tag)
+	
+func remove_tag(tag : Variant) -> void:
+	var tag_index : int = -1
+	if tag is String:
+		for tag_name in tags:
+			if tag_name[0] == tag:
+				tag_index = tags.find(tag_name)
+	elif tag is Array:
+		tag_index = tags.find(tag)
+		
+	tags.pop_at(tag_index)

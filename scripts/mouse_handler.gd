@@ -40,6 +40,10 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("action") and clicked_obj is Book:
 		clicked_obj.showing_spine = !clicked_obj.showing_spine
 		clicked_obj.flip_book(clicked_obj.showing_spine)
+		
+	if Input.is_action_just_pressed("debug") and clicked_obj != null:
+		if clicked_obj is Book:
+			print(clicked_obj.tags)
 
 func _on_hovering(hov_obj: Node, is_hover : bool) -> void:
 	if is_hover:

@@ -22,7 +22,7 @@ font_size = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01hes"]
 resource_local_to_scene = true
-size = Vector2(160, 300)
+size = Vector2(220, 300)
 
 [node name="Book" type="Node2D" unique_id=1188724431]
 process_priority = 2
@@ -79,7 +79,7 @@ horizontal_alignment = 1
 is_clickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHandle" unique_id=455564279]
-position = Vector2(20, 0)
+position = Vector2(-10, 0)
 shape = SubResource("RectangleShape2D_01hes")
 
 [connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
