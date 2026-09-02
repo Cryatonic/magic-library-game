@@ -70,7 +70,7 @@ func flip_book(show_spine : bool = false) -> void:
 			if obj != self and obj is Book:
 				obj.flip_book_button.disabled = true
 	else:
-		sprite_2d.region_rect.position.x = slot_facing
+		sprite_2d.region_rect.position.x = 0.0
 		flip_book_button.position.x = flip_button_x_offset[0]
 		book_label.visible = show_spine
 		global_position = previous_glob_pos
@@ -124,6 +124,8 @@ func _on_finished_moving() -> void:
 
 func _on_on_deselect() -> void:
 	flip_book_button.disabled = true
+	if not moving:
+		sprite_2d.z_index = 0
 	if slot != null and not moving:
 		set_book_scale(slot.slotted_book_mod)
 		sprite_2d.region_rect.position.x = slot_facing

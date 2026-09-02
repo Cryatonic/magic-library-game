@@ -69,3 +69,5 @@ func add_or_remove_tag(slot : CartSlot, tag : Array, remove : bool = false):
 		slot.remove_tag(tag)
 	else:
 		slot.add_tag(tag)
+	
+	slot.determine_effective_tags()
