@@ -165,7 +165,9 @@ func _on_click_interaction(_click_obj: Node) -> void:
 	elif _click_obj is Book:
 		#pass
 		if _click_obj == self:
-			slot.parent_cart.fill_slots_w_tags(slot, tags)
+			if slot != null:
+				if slot is CartSlot:
+					slot.parent_cart.fill_slots_w_tags(slot, tags, true)
 	else:
 		if slot != null:
 			if slot is CartSlot:
