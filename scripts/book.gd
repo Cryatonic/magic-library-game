@@ -140,9 +140,7 @@ func _on_on_click() -> void:
 	sprite_2d.region_rect.position.x = 0
 	flip_book_button.disabled = false
 	
-	if slot != null:
-		if slot is CartSlot:
-			slot.parent_cart.fill_slots_w_tags(slot, tags, true)
+	populate_cart_slot_with_tags(true)
 
 func _on_click_interaction(_click_obj: Node) -> void:
 	if _click_obj is BaseSlot:
@@ -155,23 +153,14 @@ func _on_click_interaction(_click_obj: Node) -> void:
 						MHandler.emit_signal("do_not_deselect")
 						return
 		
-		
-		#if slot != null:
-			#if slot is CartSlot:
-				#slot.parent_cart.fill_slots_w_tags(slot, tags, true)
-				
 		slot_book(_click_obj)
-		slot.parent_cart.fill_slots_w_tags(slot, tags)
+		populate_cart_slot_with_tags()
 	elif _click_obj is Book:
 		#pass
 		if _click_obj == self:
-			if slot != null:
-				if slot is CartSlot:
-					slot.parent_cart.fill_slots_w_tags(slot, tags, true)
+			populate_cart_slot_with_tags()
 	else:
-		if slot != null:
-			if slot is CartSlot:
-				slot.parent_cart.fill_slots_w_tags(slot, tags, true)
+		populate_cart_slot_with_tags(true)
 		slot = null
 		slot_facing = 0
 
@@ -196,3 +185,10 @@ func remove_tag(tag : Variant) -> void:
 		tag_index = tags.find(tag)
 		
 	tags.pop_at(tag_index)
+
+func populate_cart_slot_with_tags(delete : bool = false) -> void:
+	if slot == null:
+		return
+	if slot is not CartSlot:
+		return
+	slot.parent_cart.fill_slots_w_tags(slot, tags, delete)
