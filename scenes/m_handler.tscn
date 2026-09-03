@@ -7,5 +7,6 @@ script = ExtResource("1_1mrws")
 
 [connection signal="click" from="." to="." method="_on_click"]
 [connection signal="deselect" from="." to="." method="_on_deselect"]
+[connection signal="do_not_deselect" from="." to="." method="_on_do_not_deselect"]
 [connection signal="hovering" from="." to="." method="_on_hovering"]
 [connection signal="toggle_all" from="." to="." method="_on_toggle_all"]

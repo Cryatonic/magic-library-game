@@ -6,11 +6,16 @@ signal hovering(hov_obj : Node, is_hover : bool)
 @warning_ignore("unused_signal")
 signal click(click_obj : Node)
 signal deselect(obj : Node)
+@warning_ignore("unused_signal")
+signal do_not_deselect
 
+@warning_ignore("unused_signal")
 signal toggle_all(t : bool)
 
 var hovering_objs : Array[Node] = []
 var clicked_obj : Node = null
+
+var d_n_deselect : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,11 +37,14 @@ func _input(event: InputEvent) -> void:
 			if priority_hov_obj.get_node("MouseHandle").is_clickable:
 				if clicked_obj == null:
 					emit_signal("click", priority_hov_obj)
-					priority_hov_obj.emit_signal("on_click")
+					#priority_hov_obj.emit_signal("on_click")
 				else:
 					priority_hov_obj.emit_signal("click_interaction", clicked_obj)
-					clicked_obj.emit_signal("click_interaction", priority_hov_obj)
-					emit_signal("deselect", clicked_obj)
+					if clicked_obj != priority_hov_obj:
+						clicked_obj.emit_signal("click_interaction", priority_hov_obj)
+					if not d_n_deselect:
+						emit_signal("deselect", clicked_obj)
+					d_n_deselect = false
 	if Input.is_action_just_pressed("action") and clicked_obj is Book:
 		clicked_obj.showing_spine = !clicked_obj.showing_spine
 		clicked_obj.flip_book(clicked_obj.showing_spine)
@@ -53,6 +61,7 @@ func _on_hovering(hov_obj: Node, is_hover : bool) -> void:
 
 func _on_click(click_obj: Node) -> void:
 	clicked_obj = click_obj
+	clicked_obj.emit_signal("on_click")
 
 func _on_deselect(obj : Node) -> void:
 	obj.emit_signal("on_deselect")
@@ -61,3 +70,7 @@ func _on_deselect(obj : Node) -> void:
 func _on_toggle_all(t : bool) -> void:
 	for mh in get_tree().get_nodes_in_group("MouseHandle"):
 		mh.set_deferred("input_pickable", t)
+
+
+func _on_do_not_deselect() -> void:
+	d_n_deselect = true

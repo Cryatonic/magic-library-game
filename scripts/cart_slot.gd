@@ -6,6 +6,7 @@ class_name CartSlot
 
 var held_tags : Array[Array] = []
 var effective_tags : Array[String] = []
+var voided : bool = false
 
 var mouse_hover : bool = false
 var opacity_when_hovered : int = 95
@@ -22,8 +23,9 @@ func _on_on_click() -> void:
 	MHandler.emit_signal("deselect", self)
 
 func _on_click_interaction(_click_obj: Node) -> void:
-	if _click_obj is Book:
-		parent_cart.fill_slots_w_tags(self, _click_obj.tags)
+	pass
+	#if _click_obj is Book:
+		#parent_cart.fill_slots_w_tags(self, _click_obj.tags)
 
 func _on_on_deselect() -> void:
 	pass
@@ -39,13 +41,12 @@ func remove_tag(tag : Variant) -> void:
 				tag_index = held_tags.find(tag_name)
 	elif tag is Array:
 		tag_index = held_tags.find(tag)
-		
-	held_tags.pop_at(tag_index)
+	
+	if tag_index != -1:
+		held_tags.pop_at(tag_index)
 
 func determine_effective_tags() -> void:
-	for tag in effective_tags:
-		THandler.remove_tag_visual(self, tag)
-	effective_tags.clear()
+	clear_tags()
 	
 	for tag in held_tags:
 		var dup_tag : bool = false
@@ -59,3 +60,8 @@ func determine_effective_tags() -> void:
 			effective_tags.append(tag[0])
 	
 	THandler.add_tag_visual(self, effective_tags)
+
+func clear_tags():
+	for tag in effective_tags:
+		THandler.remove_tag_visual(self, tag)
+	effective_tags.clear()

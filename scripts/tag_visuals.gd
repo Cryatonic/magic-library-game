@@ -16,6 +16,8 @@ func _process(_delta: float) -> void:
 
 func determine_offset(tag_name : String) -> void:
 	match tag_name:
+		"normal":
+			pass
 		"fire": 
 			sprite_region_offset = 0.0
 			tag_n = "fire"

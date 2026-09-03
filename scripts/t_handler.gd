@@ -12,6 +12,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+func slot_tag_interactions(slot :  CartSlot) -> void:
+	var num_tags = slot.effective_tags.size()
+	
+	if num_tags < 2: return
+	
+	for t in range(0, num_tags):
+		pass
+
 func add_tag_visual(slot : CartSlot, tags : Array[String]) -> void:
 	var tag_num : int = 0
 	
@@ -23,6 +31,7 @@ func add_tag_visual(slot : CartSlot, tags : Array[String]) -> void:
 				#break
 		#if dup_tag:
 			#break
+		if tag == "normal": break
 		var tag_vis : TagVisuals = tag_visual_scene.instantiate()
 		slot.get_node("TagSpriteContainer").add_child(tag_vis)
 		
@@ -71,3 +80,27 @@ func remove_tag_visual(slot : CartSlot, tag_name : String) -> void:
 		if t.tag_n == tag_name:
 			t.queue_free()
 			
+
+func book_slot_tag_interactions(tag_one : String, tag_two : String) -> bool:
+	match tag_one:
+		"normal": return normal_bs_tag_interactions(tag_two)
+		"fire": return fire_bs_tag_interactions(tag_two)
+		"stone": return stone_bs_tag_interactions(tag_two)
+		"water": return water_bs_tag_interactions(tag_two)
+		"void": return void_bs_tag_interactions(tag_two)
+	return true
+
+func normal_bs_tag_interactions(tag : String) -> bool:
+	if tag != "normal": return false
+	return true
+func fire_bs_tag_interactions(tag : String) -> bool:
+	if tag == "fire" or tag == "stone": return true
+	return false
+func stone_bs_tag_interactions(tag : String) -> bool:
+	if tag == "water" or tag == "void": return false
+	return true
+func water_bs_tag_interactions(tag : String) -> bool:
+	if tag == "water": return true
+	return false
+func void_bs_tag_interactions(tag : String) -> bool:
+	return false

@@ -139,15 +139,33 @@ func _on_on_click() -> void:
 	sprite_2d.z_index = 1
 	sprite_2d.region_rect.position.x = 0
 	flip_book_button.disabled = false
+	
+	if slot != null:
+		if slot is CartSlot:
+			slot.parent_cart.fill_slots_w_tags(slot, tags, true)
 
 func _on_click_interaction(_click_obj: Node) -> void:
 	if _click_obj is BaseSlot:
-		if slot != null:
-			if slot is CartSlot:
-				slot.parent_cart.fill_slots_w_tags(slot, tags, true)
+		if _click_obj is CartSlot:
+			var able_to_slot : bool = true
+			for each in tags:
+				for t in _click_obj.effective_tags:
+					able_to_slot = THandler.book_slot_tag_interactions(each[0], t)
+					if not able_to_slot:
+						MHandler.emit_signal("do_not_deselect")
+						return
+		
+		
+		#if slot != null:
+			#if slot is CartSlot:
+				#slot.parent_cart.fill_slots_w_tags(slot, tags, true)
+				
 		slot_book(_click_obj)
+		slot.parent_cart.fill_slots_w_tags(slot, tags)
 	elif _click_obj is Book:
-		pass
+		#pass
+		if _click_obj == self:
+			slot.parent_cart.fill_slots_w_tags(slot, tags)
 	else:
 		if slot != null:
 			if slot is CartSlot:

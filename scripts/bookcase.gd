@@ -47,7 +47,9 @@ func _process(_delta: float) -> void:
 		spawned_books = true
 
 func test_add_tags(val : int, stren : int, b : Book) -> void:
-	if val == 1:
+	if val == 0:
+		b.add_tag(["normal"])
+	elif val == 1:
 		b.add_tag(["fire", stren + 1, true])
 	elif val == 2:
 		b.add_tag(["stone"])
