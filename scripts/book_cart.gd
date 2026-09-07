@@ -98,6 +98,8 @@ func add_or_remove_tag(slot : CartSlot, tag : Array, remove : bool = false):
 		slot.add_tag(tag)
 	
 	slot.determine_effective_tags()
+	THandler.slot_tag_interactions(slot)
+	#slot.determine_effective_tags()
 	
 func add_or_remove_book(book : Book, remove : bool = false) -> void:
 	if remove:

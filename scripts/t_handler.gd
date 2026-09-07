@@ -12,14 +12,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func slot_tag_interactions(slot :  CartSlot) -> void:
-	var num_tags = slot.effective_tags.size()
-	
-	if num_tags < 2: return
-	
-	for t in range(0, num_tags):
-		pass
-
 func add_tag_visual(slot : CartSlot, tags : Array[String]) -> void:
 	var tag_num : int = 0
 	
@@ -104,3 +96,22 @@ func water_bs_tag_interactions(tag : String) -> bool:
 	return false
 func void_bs_tag_interactions(_tag : String) -> bool:
 	return false
+
+func slot_tag_interactions(slot :  CartSlot) -> void:
+	var num_tags = slot.effective_tags.size()
+	
+	#if num_tags < 2: 
+		#slot.voided = false
+		#return
+	
+	for t in range(0, num_tags):
+		match slot.effective_tags[t]:
+			"normal": pass
+			"fire": pass
+			"stone": pass
+			"water": pass
+			"void": 
+				if num_tags > 1:
+					print("y")
+					slot.clear_tags()
+					return
