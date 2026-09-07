@@ -102,5 +102,5 @@ func stone_bs_tag_interactions(tag : String) -> bool:
 func water_bs_tag_interactions(tag : String) -> bool:
 	if tag == "water": return true
 	return false
-func void_bs_tag_interactions(tag : String) -> bool:
+func void_bs_tag_interactions(_tag : String) -> bool:
 	return false
