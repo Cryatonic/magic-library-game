@@ -67,7 +67,7 @@ func fill_slots_w_tags(start_slot : CartSlot, tags : Array, remove : bool = fals
 				if y != slot_pos[1]:
 					slots_to_affect[t].append(slots_array[slot_pos[0]][y])
 					#add_or_remove_tag(slots_array[slot_pos[0]][y], tag, remove)
-		if remove: continue
+		#if remove: continue
 		for book : Book in held_books:
 			for slot : CartSlot in slots_to_affect[t]:
 				if book.slot == slot:
@@ -76,6 +76,7 @@ func fill_slots_w_tags(start_slot : CartSlot, tags : Array, remove : bool = fals
 							able_to_slot = THandler.book_slot_tag_interactions(tag[0], slot_tag)
 							if not able_to_slot:
 								MHandler.emit_signal("do_not_deselect")
+								print("cannot go here")
 								return false
 	#if not able_to_slot:
 		#return false
@@ -91,7 +92,7 @@ func find_slot_array_val(slot : CartSlot) -> Array[int]:
 				return [x,y]
 	return [-1,-1]
 
-func add_or_remove_tag(slot : CartSlot, tag : Array, remove : bool = false):
+func add_or_remove_tag(slot : CartSlot, tag : Array, remove : bool = false) -> void:
 	if remove:
 		slot.remove_tag(tag)
 	else:

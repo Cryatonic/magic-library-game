@@ -47,8 +47,6 @@ func remove_tag(tag : Variant) -> void:
 
 func determine_effective_tags() -> void:
 	clear_tags()
-	#if voided:
-		#return
 	
 	for tag in held_tags:
 		var dup_tag : bool = false

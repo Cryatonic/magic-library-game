@@ -112,6 +112,5 @@ func slot_tag_interactions(slot :  CartSlot) -> void:
 			"water": pass
 			"void": 
 				if num_tags > 1:
-					print("y")
 					slot.clear_tags()
 					return
