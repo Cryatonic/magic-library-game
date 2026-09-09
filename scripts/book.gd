@@ -191,7 +191,6 @@ func remove_tag(tag : Variant) -> void:
 	tags.pop_at(tag_index)
 
 func populate_cart_slot_with_tags(s : BaseSlot, delete : bool = false) -> bool:
-	print(s)
 	if s == null:
 		return true
 	if s is not CartSlot:
