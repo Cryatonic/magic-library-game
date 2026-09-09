@@ -15,6 +15,7 @@ signal click_interaction(_click_obj : Node)
 @onready var section_tag_sprite: Sprite2D = $BookLabel/SectionTagSprite
 @onready var location_label: Label = $BookLabel/SectionTagSprite/LocationLabel
 @onready var mouse_handle: MouseHandle = $MouseHandle
+@onready var tag_visuals_marker: Marker2D = $BookLabel/TagVisualsMarker
 
 var showing_spine : bool = false
 var flip_button_x_offset : Array[int] = [-16, -4]
@@ -26,6 +27,7 @@ var previous_glob_pos : Vector2
 var pos_to_go : Vector2
 
 @export var tags : Array[Array] = []
+var tag_sprite_offset : int = 12
 
 var slot : Node = null
 var slot_facing : float = 0.0
@@ -189,10 +191,27 @@ func remove_tag(tag : Variant) -> void:
 	tags.pop_at(tag_index)
 
 func populate_cart_slot_with_tags(s : BaseSlot, delete : bool = false) -> bool:
-	if slot == null:
+	print(s)
+	if s == null:
 		return true
 	if s is not CartSlot:
 		return true
 	
 	s.parent_cart.add_or_remove_book(self, delete)
-	return s.parent_cart.fill_slots_w_tags(s, tags, delete)
+	if s.parent_cart.fill_slots_w_tags(s, tags, delete):
+		return true
+	s.parent_cart.add_or_remove_book(self, !delete)
+	return false
+	
+	#s.parent_cart.add_or_remove_book(self, delete)
+	#return s.parent_cart.fill_slots_w_tags(s, tags, delete)
+
+func add_tag_visuals() -> void:
+	var visuals_array : Array[String] = []
+	for each in tags:
+		if each.size() == 1:
+			visuals_array.append(each[0])
+		else:
+			for num in each[1]:
+				visuals_array.append(each[0])
+		THandler.add_tag_visual(self, tag_visuals_marker.global_position, "BookLabel/TagVisualsMarker", visuals_array, tag_sprite_offset)

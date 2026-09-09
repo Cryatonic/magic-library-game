@@ -57,17 +57,11 @@ func fill_slots_w_tags(start_slot : CartSlot, tags : Array, remove : bool = fals
 					slots_to_affect[t].append(slots_array[x][y])
 					#add_or_remove_tag(slots_array[x][y], tag, remove)
 		else:
-			slots_to_affect[t].append(slots_array[slot_pos[0]][slot_pos[1]])
-			#add_or_remove_tag(slots_array[slot_pos[0]][slot_pos[1]], tag, remove)
 			for x in range(x_range[0], x_range[1]+1):
-				if x != slot_pos[0]:
-					slots_to_affect[t].append(slots_array[x][slot_pos[1]])
-					#add_or_remove_tag(slots_array[x][slot_pos[1]], tag, remove)
-			for y in range(y_range[0], y_range[1]+1):
-				if y != slot_pos[1]:
-					slots_to_affect[t].append(slots_array[slot_pos[0]][y])
-					#add_or_remove_tag(slots_array[slot_pos[0]][y], tag, remove)
-		#if remove: continue
+				for y in range(y_range[0], y_range[1]+1):
+					if abs(x - slot_pos[0]) + abs(y - slot_pos[1]) > size:
+						continue
+					slots_to_affect[t].append(slots_array[x][y])
 		for book : Book in held_books:
 			for slot : CartSlot in slots_to_affect[t]:
 				if book.slot == slot:

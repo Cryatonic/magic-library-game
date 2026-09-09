@@ -75,6 +75,10 @@ text = "##-##-##"
 label_settings = SubResource("LabelSettings_1scci")
 horizontal_alignment = 1
 
+[node name="TagVisualsMarker" type="Marker2D" parent="BookLabel" unique_id=1229234881]
+position = Vector2(0, -48)
+scale = Vector2(2, 2)
+
 [node name="MouseHandle" parent="." unique_id=191069512 instance=ExtResource("5_01hes")]
 is_clickable = true
 

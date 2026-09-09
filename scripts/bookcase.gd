@@ -18,6 +18,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if not spawned_books:
+		spawned_books = true
+		
 		var bci_bc = get_tree().get_first_node_in_group("BookContainer")
 		var col : int = grid_container.columns
 		
@@ -38,13 +40,13 @@ func _process(_delta: float) -> void:
 			var blue = randf_range(0.2,1.0)
 			
 			bci_bc.add_child(b)
+			#await get_tree().process_frame
 			b.sprite_2d.modulate = Color(red,green,blue,1.0)
 			if s.pos_to_slot != s.global_position + s.pos_offset:
 				s.pos_to_slot = s.global_position + s.pos_offset
+			b.add_tag_visuals()
 			b.slot_book(s)
 			shelf_spot += 1
-		
-		spawned_books = true
 
 func test_add_tags(val : int, stren : int, b : Book) -> void:
 	if val == 0:

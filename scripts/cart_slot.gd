@@ -10,6 +10,8 @@ var voided : bool = false
 
 var mouse_hover : bool = false
 var opacity_when_hovered : int = 95
+
+var tag_sprite_offset : int = 64
 	
 func _on_mouse_handle_mouse_entered() -> void:
 	mouse_hover = true
@@ -59,9 +61,9 @@ func determine_effective_tags() -> void:
 		if not dup_tag:
 			effective_tags.append(tag[0])
 	
-	THandler.add_tag_visual(self, effective_tags)
+	THandler.add_tag_visual(self, global_position, "TagSpriteContainer", effective_tags, tag_sprite_offset)
 
 func clear_tags():
 	for tag in effective_tags:
-		THandler.remove_tag_visual(self, tag)
+		THandler.remove_tag_visual(self, "TagSpriteContainer", tag)
 	effective_tags.clear()
