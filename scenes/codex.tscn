@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dh4e4gm21oyin"]
+
+[ext_resource type="Script" uid="uid://b3mv4eq2vqevi" path="res://scripts/codex.gd" id="1_2glps"]
+[ext_resource type="PackedScene" uid="uid://1u2k0r6wv5d5" path="res://scenes/codex_button_container.tscn" id="1_nbhds"]
+
+[node name="Codex" type="Node2D" unique_id=345246291]
+scale = Vector2(12, 12)
+script = ExtResource("1_2glps")
+
+[node name="CodexButtonContainer" parent="." unique_id=867886053 instance=ExtResource("1_nbhds")]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://1u2k0r6wv5d5"]
+
+[ext_resource type="Script" uid="uid://d0e1vkvkkmaup" path="res://scripts/codex_button_container.gd" id="1_ujbpr"]
+
+[node name="CodexButtonContainer" type="ScrollContainer" unique_id=867886053]
+custom_minimum_size = Vector2(64, 36)
+offset_right = 124.0
+offset_bottom = 36.0
+script = ExtResource("1_ujbpr")
+
+[node name="VScrollBar" type="VBoxContainer" parent="." unique_id=1580520986]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VScrollBar" unique_id=981904583]
+layout_mode = 2
+columns = 2

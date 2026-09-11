@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dbufbigy43tt1"]
+
+[ext_resource type="FontFile" uid="uid://dyc7j3xg0ehut" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_l7ipt"]
+[ext_resource type="Script" uid="uid://bemvnccx7ud2c" path="res://scripts/codex_button.gd" id="2_4p8re"]
+
+[node name="CodexButton" type="Button" unique_id=2123702969]
+offset_right = 47.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("1_l7ipt")
+theme_override_font_sizes/font_size = 8
+toggle_mode = true
+action_mode = 0
+script = ExtResource("2_4p8re")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

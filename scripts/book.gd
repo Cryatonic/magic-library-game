@@ -201,9 +201,6 @@ func populate_cart_slot_with_tags(s : BaseSlot, delete : bool = false) -> bool:
 		return true
 	s.parent_cart.add_or_remove_book(self, !delete)
 	return false
-	
-	#s.parent_cart.add_or_remove_book(self, delete)
-	#return s.parent_cart.fill_slots_w_tags(s, tags, delete)
 
 func add_tag_visuals() -> void:
 	var visuals_array : Array[String] = []
