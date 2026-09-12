@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://1u2k0r6wv5d5" path="res://scenes/codex_button_container.tscn" id="1_nbhds"]
 
 [node name="Codex" type="Node2D" unique_id=345246291]
-scale = Vector2(12, 12)
+scale = Vector2(6, 6)
 script = ExtResource("1_2glps")
 
 [node name="CodexButtonContainer" parent="." unique_id=867886053 instance=ExtResource("1_nbhds")]

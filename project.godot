@@ -34,6 +34,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Magic Library Game"
 
+[global_group]
+
+Game=""
+
 [input]
 
 debug={

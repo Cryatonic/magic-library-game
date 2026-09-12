@@ -8,6 +8,9 @@ class_name Game
 @onready var book_cart: BookCart = $BookCart
 @onready var bookcase_input: Node2D = $Bookcase_Input
 
+@onready var subject_creature_types : Array[String] = ["Aberration", "Beast", "Construct", 
+"Elemental", "Undead", "Unholy"]
+
 var tween : Tween = create_tween()
 
 # Called when the node enters the scene tree for the first time.

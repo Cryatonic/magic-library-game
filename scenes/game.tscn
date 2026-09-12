@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(2400, 128)
 
-[node name="Game" type="Node2D" unique_id=162125047]
+[node name="Game" type="Node2D" unique_id=162125047 groups=["Game"]]
 script = ExtResource("1_lbhrr")
 
 [node name="BookContainer" type="Node2D" parent="." unique_id=644659472 groups=["BookContainer"]]
