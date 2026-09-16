@@ -15,6 +15,8 @@ func _process(_delta: float) -> void:
 
 func _on_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		print(text)
+		get_tree().get_first_node_in_group("Game").searching_subjects.append(button_text)
 	else:
-		pass
+		var index = get_tree().get_first_node_in_group("Game").searching_subjects.find(button_text)
+		if index != -1:
+			get_tree().get_first_node_in_group("Game").searching_subjects.pop_at(index)

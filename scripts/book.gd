@@ -29,6 +29,8 @@ var pos_to_go : Vector2
 @export var tags : Array[Array] = []
 var tag_sprite_offset : int = 12
 
+var subjects : Array[String] = []
+
 var slot : Node = null
 var slot_facing : float = 0.0
 
@@ -45,6 +47,10 @@ func _ready() -> void:
 	section_tag_sprite.region_rect.position.x = section_tag_val * section_tag_sprite.region_rect.size.x
 	location_label.text = str(shelf_location[0]) + "-" + str(shelf_location[1]) + "-" + str(shelf_location[2])
 	previous_glob_pos = global_position
+	
+	generate_subjects()
+	for sub in subjects:
+		get_tree().get_first_node_in_group("Game").subjects_dict[sub].append(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -211,3 +217,15 @@ func add_tag_visuals() -> void:
 			for num in each[1]:
 				visuals_array.append(each[0])
 		THandler.add_tag_visual(self, tag_visuals_marker.global_position, "BookLabel/TagVisualsMarker", visuals_array, tag_sprite_offset)
+
+func generate_subjects():
+	var num_subjects : int = randi_range(1,3)
+	var type : int
+	
+	for n in range(num_subjects):
+		type = randi_range(0,1)
+		
+		if type == 0:
+			subjects.append(get_tree().get_first_node_in_group("Game").sub_creature_types.pick_random())
+		else: 
+			subjects.append(get_tree().get_first_node_in_group("Game").sub_characteristics.pick_random())

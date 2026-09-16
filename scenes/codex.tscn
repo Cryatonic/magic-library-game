@@ -2,9 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b3mv4eq2vqevi" path="res://scripts/codex.gd" id="1_2glps"]
 [ext_resource type="PackedScene" uid="uid://1u2k0r6wv5d5" path="res://scenes/codex_button_container.tscn" id="1_nbhds"]
+[ext_resource type="FontFile" uid="uid://ciak3c287qkl3" path="res://assets/fonts/PixelOperator8.ttf" id="3_jco8u"]
 
 [node name="Codex" type="Node2D" unique_id=345246291]
-scale = Vector2(6, 6)
+scale = Vector2(3, 3)
 script = ExtResource("1_2glps")
 
 [node name="CodexButtonContainer" parent="." unique_id=867886053 instance=ExtResource("1_nbhds")]
+
+[node name="Search" type="Button" parent="." unique_id=295363383]
+offset_top = 200.0
+offset_right = 92.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("3_jco8u")
+theme_override_font_sizes/font_size = 16
+text = "Search"

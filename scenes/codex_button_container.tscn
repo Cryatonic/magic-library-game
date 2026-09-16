@@ -17,7 +17,7 @@ current_tab = 0
 clip_tabs = false
 deselect_enabled = true
 tab_0/title = "Creatures"
-tab_1/title = "Charecteristics"
+tab_1/title = "Characteristics"
 
 [node name="CreaturesBar" type="VBoxContainer" parent="TabContainer" unique_id=1842580680]
 layout_mode = 2
@@ -29,13 +29,13 @@ metadata/_tab_name = "Creatures"
 layout_mode = 2
 columns = 3
 
-[node name="CharecteristicsBar" type="VBoxContainer" parent="TabContainer" unique_id=839890064]
+[node name="CharacteristicsBar" type="VBoxContainer" parent="TabContainer" unique_id=839890064]
 visible = false
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 1
-metadata/_tab_name = "Charecteristics"
+metadata/_tab_name = "Characteristics"
 
-[node name="CharGrid" type="GridContainer" parent="TabContainer/CharecteristicsBar" unique_id=837804167]
+[node name="CharGrid" type="GridContainer" parent="TabContainer/CharacteristicsBar" unique_id=837804167]
 layout_mode = 2
 columns = 3

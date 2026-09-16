@@ -2,7 +2,7 @@ extends ScrollContainer
 class_name CodexButtonContainer
 
 @onready var creatures_grid: GridContainer = $TabContainer/CreaturesBar/CreaturesGrid
-@onready var char_grid: GridContainer = $TabContainer/CharecteristicsBar/CharGrid
+@onready var char_grid: GridContainer = $TabContainer/CharacteristicsBar/CharGrid
 var c_b_scene : PackedScene = preload("uid://dbufbigy43tt1")
 
 # Called when the node enters the scene tree for the first time.
