@@ -52,6 +52,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug") and clicked_obj != null:
 		if clicked_obj is Book:
 			print(clicked_obj.tags)
+			print(clicked_obj.subjects)
 
 func _on_hovering(hov_obj: Node, is_hover : bool) -> void:
 	if is_hover:

@@ -2,6 +2,7 @@ extends Node2D
 class_name Codex
 
 @onready var codex_button_container: CodexButtonContainer = $CodexButtonContainer
+@onready var search: Button = $Search
 
 #@onready var sub_creature_types : Array[String] = ["Aberration", "Beast", "Construct", 
 #"Elemental", "Undead", "Unholy"]
@@ -26,3 +27,7 @@ func _process(_delta: float) -> void:
 func add_codex_tabs(tab_names : Array[String], subject : String):
 	for sub_name in tab_names:
 		codex_button_container.add_codex_button(subject, sub_name)
+
+
+func _on_search_pressed() -> void:
+	get_tree().get_first_node_in_group("Game").emit_signal("search_for_books")

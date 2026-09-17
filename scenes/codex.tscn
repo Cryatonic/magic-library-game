@@ -17,3 +17,5 @@ offset_bottom = 224.0
 theme_override_fonts/font = ExtResource("3_jco8u")
 theme_override_font_sizes/font_size = 16
 text = "Search"
+
+[connection signal="pressed" from="Search" to="." method="_on_search_pressed"]

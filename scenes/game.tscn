@@ -55,6 +55,7 @@ position = Vector2(-1125, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/LeftArea" unique_id=1918505152]
 shape = SubResource("RectangleShape2D_wqpan")
 
+[connection signal="search_for_books" from="." to="." method="_on_search_for_books"]
 [connection signal="mouse_entered" from="GameCam/DownArea" to="." method="_on_down_area_mouse_entered"]
 [connection signal="mouse_entered" from="GameCam/UpArea" to="." method="_on_up_area_mouse_entered"]
 [connection signal="mouse_entered" from="GameCam/RightArea" to="." method="_on_right_area_mouse_entered"]

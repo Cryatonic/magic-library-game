@@ -1,6 +1,9 @@
 extends Node2D
 class_name Game
 
+@warning_ignore("unused_signal")
+signal search_for_books
+
 @onready var game_cam: Camera2D = $GameCam
 @onready var down_area: MouseHandle = $GameCam/DownArea
 @onready var up_area: MouseHandle = $GameCam/UpArea
@@ -64,3 +67,41 @@ func _on_right_area_mouse_entered() -> void:
 func _on_left_area_mouse_entered() -> void:
 	if !tween.is_running():
 		move_cam(bookcase_input.global_position)
+
+
+func _on_search_for_books() -> void:
+	if searching_subjects.size() == 0:
+		print("Empty.")
+		return
+	
+	var matching_books_p : Array[String] = []
+	#var matching_books_s : Array[Book] = []
+	
+	for book : Book in subjects_dict[searching_subjects[0]]:
+		if compare_subjects(book):
+			matching_books_p.append(book.location_label.text)
+			
+	for t : String in matching_books_p:
+		print(t)
+	
+	#for book : Book in get_node("BookContainer").get_children():
+		#if compare_subjects(book):
+			#matching_books_s.append(book)
+	
+	#print(matching_books_p)
+	#print(matching_books_s)
+
+func compare_subjects(b : Book) -> bool:
+	var m : bool
+	
+	for searching_sub in searching_subjects:
+		m = false
+		for book_sub in b.subjects:
+			if book_sub == searching_sub:
+				m = true
+				break
+		
+		if not m:
+			return m
+	
+	return m
