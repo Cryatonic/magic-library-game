@@ -74,14 +74,18 @@ func _on_search_for_books() -> void:
 		print("Empty.")
 		return
 	
-	var matching_books_p : Array[String] = []
+	var matching_books : Array[String] = []
 	#var matching_books_s : Array[Book] = []
 	
 	for book : Book in subjects_dict[searching_subjects[0]]:
 		if compare_subjects(book):
-			matching_books_p.append(book.location_label.text)
+			matching_books.append(book.location_label.text)
 			
-	for t : String in matching_books_p:
+	
+	if matching_books.size() == 0:
+		print("No Matches")
+		return
+	for t : String in matching_books:
 		print(t)
 	
 	#for book : Book in get_node("BookContainer").get_children():
