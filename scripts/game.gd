@@ -36,10 +36,10 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_search_for_books() -> void:
+func _on_search_for_books() -> Array[String]:
 	if searching_subjects.size() == 0:
 		print("Empty.")
-		return
+		return []
 	
 	var matching_books : Array[String] = []
 	
@@ -48,11 +48,12 @@ func _on_search_for_books() -> void:
 			matching_books.append(book.location_label.text)
 			
 	
-	if matching_books.size() == 0:
-		print("No Matches")
-		return
-	for t : String in matching_books:
-		print(t)
+	#if matching_books.size() == 0:
+		#print("No Matches")
+		#return[]
+	#for t : String in matching_books:
+		#print(t)
+	return matching_books
 
 func compare_subjects(b : Book) -> bool:
 	var m : bool

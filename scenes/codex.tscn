@@ -18,4 +18,11 @@ theme_override_fonts/font = ExtResource("3_jco8u")
 theme_override_font_sizes/font_size = 16
 text = "Search"
 
+[node name="SearchResults" type="RichTextLabel" parent="." unique_id=1207024545]
+offset_top = 230.0
+offset_right = 400.0
+offset_bottom = 430.0
+theme_override_fonts/normal_font = ExtResource("3_jco8u")
+theme_override_font_sizes/normal_font_size = 8
+
 [connection signal="pressed" from="Search" to="." method="_on_search_pressed"]

@@ -3,22 +3,12 @@ class_name Codex
 
 @onready var codex_button_container: CodexButtonContainer = $CodexButtonContainer
 @onready var search: Button = $Search
+@onready var search_results: RichTextLabel = $SearchResults
 
-#@onready var sub_creature_types : Array[String] = ["Aberration", "Beast", "Construct", 
-#"Elemental", "Undead", "Unholy"]
-#get_tree().get_first_node_in_group("Game").subject_creature_types
-#@onready var sub_characteristics : Array[String] = ["Aquatic", "Dangerous", "Flaming",
-#"Flying", "Friendly", "Hostile", "Intelligent", "Magical"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
-	#for sub in get_tree().get_first_node_in_group("Game").sub_creature_types:
-		#codex_button_container.add_codex_button("creature", sub)
-	#for sub in get_tree().get_first_node_in_group("Game").sub_characteristics:
-		#codex_button_container.add_codex_button("char", sub)
-	#await get_tree().process_frame
-	#codex_button_container.size.x = (codex_button_container.get_node("VScrollBar/GridContainer").get_child(0).size.x * 2) + 12
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -30,4 +20,21 @@ func add_codex_tabs(tab_names : Array[String], subject : String):
 
 
 func _on_search_pressed() -> void:
-	get_tree().get_first_node_in_group("Game").emit_signal("search_for_books")
+	var books = get_tree().get_first_node_in_group("Game")._on_search_for_books()
+	
+	search_results.clear()
+	search_results.add_text("Results for Subjects: ")
+	for sub in get_tree().get_first_node_in_group("Game").searching_subjects:
+		search_results.add_text(sub + "   ")
+	search_results.newline()
+	search_results.newline()
+	if books.size() == 0:
+		search_results.add_text("No Matches")
+		return
+	var book_count : int = 0
+	for location in books:
+		search_results.add_text(location + "            ")
+		book_count += 1
+		if book_count % 3 == 0:
+			search_results.newline()
+			search_results.newline()
