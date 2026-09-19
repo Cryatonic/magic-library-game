@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cj4dkp3r0w3nm" path="res://scenes/book_cart.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dh4e4gm21oyin" path="res://scenes/codex.tscn" id="4_iywne"]
+[ext_resource type="Script" uid="uid://luqlippsmy8q" path="res://scripts/game_cam.gd" id="5_p57ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(2400, 128)
@@ -30,6 +31,7 @@ position = Vector2(2000, -550)
 position = Vector2(210, 183)
 
 [node name="GameCam" type="Camera2D" parent="." unique_id=884990674 groups=["GameCam"]]
+script = ExtResource("5_p57ef")
 
 [node name="DownArea" parent="GameCam" unique_id=191069512 instance=ExtResource("3_lnu2h")]
 position = Vector2(0, 687)
@@ -56,7 +58,7 @@ position = Vector2(-1125, 0)
 shape = SubResource("RectangleShape2D_wqpan")
 
 [connection signal="search_for_books" from="." to="." method="_on_search_for_books"]
-[connection signal="mouse_entered" from="GameCam/DownArea" to="." method="_on_down_area_mouse_entered"]
-[connection signal="mouse_entered" from="GameCam/UpArea" to="." method="_on_up_area_mouse_entered"]
-[connection signal="mouse_entered" from="GameCam/RightArea" to="." method="_on_right_area_mouse_entered"]
-[connection signal="mouse_entered" from="GameCam/LeftArea" to="." method="_on_left_area_mouse_entered"]
+[connection signal="mouse_entered" from="GameCam/DownArea" to="GameCam" method="_on_down_area_mouse_entered"]
+[connection signal="mouse_entered" from="GameCam/UpArea" to="GameCam" method="_on_up_area_mouse_entered"]
+[connection signal="mouse_entered" from="GameCam/RightArea" to="GameCam" method="_on_right_area_mouse_entered"]
+[connection signal="mouse_entered" from="GameCam/LeftArea" to="GameCam" method="_on_left_area_mouse_entered"]
