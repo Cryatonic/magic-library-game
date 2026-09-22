@@ -65,6 +65,7 @@ func _on_click(click_obj: Node) -> void:
 	clicked_obj.emit_signal("on_click")
 
 func _on_deselect(obj : Node) -> void:
+	if obj == null: return
 	obj.emit_signal("on_deselect")
 	clicked_obj = null
 

@@ -103,3 +103,8 @@ func add_or_remove_book(book : Book, remove : bool = false) -> void:
 		held_books.pop_at(book_index)
 	else:
 		held_books.append(book)
+
+func move_cart(x_pos_delta : float) -> void:
+	global_position.x -= x_pos_delta
+	for book in held_books:
+		book.global_position.x -= x_pos_delta

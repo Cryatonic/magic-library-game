@@ -172,6 +172,7 @@ func _on_click_interaction(_click_obj: Node) -> void:
 		slot_facing = 0
 
 func slot_book(s : BaseSlot) -> void:
+	if s == null: return
 	if s is CartSlot:
 		if not populate_cart_slot_with_tags(s):
 			return

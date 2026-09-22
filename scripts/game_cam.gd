@@ -5,8 +5,9 @@ class_name GameCam
 @onready var up_area: MouseHandle = $UpArea
 @onready var right_area: MouseHandle = $RightArea
 @onready var left_area: MouseHandle = $LeftArea
+var moves_away_from_cart : int = 0
 
-var location_dict : Dictionary[String, Vector2] = {
+var location_dict : Dictionary[String, Variant] = {
 	#"Counter": $"../".codex.global_position,
 	#"Cart": $"../".book_cart.global_position,
 	#"Bookcases": $"../".bookcase_input.global_position
@@ -31,17 +32,18 @@ func _process(_delta: float) -> void:
 
 func make_dicts() -> void:
 	location_dict = {
-		"Counter": $"../"/Codex/CodexCenter.global_position,
-		"Cart": $"../".book_cart.global_position,
-		"Bookcases": $"../".bookcase_input.global_position
+		"Counter": $"../"/Codex/CodexCenter,
+		"Cart": $"../".book_cart,
+		"Bookcases": $"../".bookcase_input
 	}
 	
 	cam_dict = { #Down; Up; Right; Left
-		"Counter": ["Cart", null, null, "Bookcases"],
+		"Counter": [null, null, null, "Bookcases"],
 		"Cart": [null, "Bookcases", null, null],
 		"Bookcases": ["Cart", null, "Counter", null]
 	}
-	current_view = "Bookcases"
+	current_view = "Counter"
+	move_to_scene(current_view)
 
 func kill_tween() -> void:
 	if tween: tween.kill()
@@ -80,5 +82,32 @@ func move_to_location(index : int = 0) -> void:
 	var location = location_dict.get(view)
 	if location == null: return
 	
-	move_cam(location)
+	move_cam(location.global_position)
+	move_cart(view)
 	current_view = view
+
+func move_to_scene(scene : String) -> void:
+	if scene == "" or scene == null: return
+	if location_dict.get(scene) == null: return
+	global_position = location_dict.get(scene).global_position
+	move_cart(scene)
+	
+func move_cart(new_view : String):
+	moves_away_from_cart += 1
+	if new_view == "Cart": 
+		moves_away_from_cart = 0
+		return
+	#if moves_away_from_cart > 1:
+		#if MHandler.clicked_obj is Book:
+			#MHandler.clicked_obj.slot_book(MHandler.clicked_obj.slot)
+			#MHandler.clicked_obj.global_position = MHandler.clicked_obj.slot.global_position
+		#MHandler.emit_signal("deselect", MHandler.clicked_obj)
+	
+	var x_pos_delta = get_tree().get_first_node_in_group("Game").book_cart.global_position.x - location_dict.get(new_view).global_position.x
+	get_tree().get_first_node_in_group("Game").book_cart.move_cart(x_pos_delta)
+	
+	for loc in cam_dict:
+		if loc == "Cart": cam_dict.get(loc)[1] = new_view
+		elif loc == new_view: cam_dict.get(new_view)[0] = "Cart"
+		else: cam_dict.get(loc)[0] = null
+	
