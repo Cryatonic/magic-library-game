@@ -17,11 +17,13 @@ signal on_deselect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	#pass
+	set_pos_to_slot()
+
+func set_pos_to_slot() -> void:
 	if pos_to_slot != global_position + pos_offset:
 		pos_to_slot = global_position + pos_offset

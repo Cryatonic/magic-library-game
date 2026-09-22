@@ -93,18 +93,19 @@ func move_to_scene(scene : String) -> void:
 	move_cart(scene)
 	
 func move_cart(new_view : String):
+	var x_pos_delta = get_tree().get_first_node_in_group("Game").book_cart.global_position.x - location_dict.get(new_view).global_position.x
+	get_tree().get_first_node_in_group("Game").book_cart.move_cart(x_pos_delta)
+	
 	moves_away_from_cart += 1
 	if new_view == "Cart": 
 		moves_away_from_cart = 0
 		return
-	#if moves_away_from_cart > 1:
-		#if MHandler.clicked_obj is Book:
-			#MHandler.clicked_obj.slot_book(MHandler.clicked_obj.slot)
-			#MHandler.clicked_obj.global_position = MHandler.clicked_obj.slot.global_position
-		#MHandler.emit_signal("deselect", MHandler.clicked_obj)
-	
-	var x_pos_delta = get_tree().get_first_node_in_group("Game").book_cart.global_position.x - location_dict.get(new_view).global_position.x
-	get_tree().get_first_node_in_group("Game").book_cart.move_cart(x_pos_delta)
+	if moves_away_from_cart > 1:
+		if MHandler.clicked_obj is Book:
+			MHandler.clicked_obj.slot_book(MHandler.clicked_obj.slot)
+			MHandler.clicked_obj.slot.set_pos_to_slot()
+			MHandler.clicked_obj.move_book(MHandler.clicked_obj.slot.pos_to_slot)
+		MHandler.emit_signal("deselect", MHandler.clicked_obj)
 	
 	for loc in cam_dict:
 		if loc == "Cart": cam_dict.get(loc)[1] = new_view
