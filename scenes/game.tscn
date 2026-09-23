@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dh4e4gm21oyin" path="res://scenes/codex.tscn" id="4_iywne"]
 [ext_resource type="Script" uid="uid://luqlippsmy8q" path="res://scripts/game_cam.gd" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://c500wrvxvaqw1" path="res://assets/sprites/blank-white.png" id="7_u5sy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(2400, 128)
@@ -39,11 +40,22 @@ position = Vector2(0, 687)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/DownArea" unique_id=1660796361]
 shape = SubResource("RectangleShape2D_1scci")
 
+[node name="Sprite" type="Sprite2D" parent="GameCam/DownArea" unique_id=1525156543]
+self_modulate = Color(0.044049747, 0.5218378, 0.66559947, 1)
+position = Vector2(0, -2.2888184e-05)
+scale = Vector2(75, 4)
+texture = ExtResource("7_u5sy4")
+
 [node name="UpArea" parent="GameCam" unique_id=154965866 instance=ExtResource("3_lnu2h")]
 position = Vector2(0, -687)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/UpArea" unique_id=1817662758]
 shape = SubResource("RectangleShape2D_1scci")
+
+[node name="Sprite" type="Sprite2D" parent="GameCam/UpArea" unique_id=284062395]
+self_modulate = Color(0.044049747, 0.5218378, 0.66559947, 1)
+scale = Vector2(75, 4)
+texture = ExtResource("7_u5sy4")
 
 [node name="RightArea" parent="GameCam" unique_id=1377334056 instance=ExtResource("3_lnu2h")]
 position = Vector2(1125, 0)
@@ -51,11 +63,21 @@ position = Vector2(1125, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/RightArea" unique_id=2084388138]
 shape = SubResource("RectangleShape2D_wqpan")
 
+[node name="Sprite" type="Sprite2D" parent="GameCam/RightArea" unique_id=1512200220]
+self_modulate = Color(0.044049747, 0.5218378, 0.66559947, 1)
+scale = Vector2(3.125, 37.5)
+texture = ExtResource("7_u5sy4")
+
 [node name="LeftArea" parent="GameCam" unique_id=629540337 instance=ExtResource("3_lnu2h")]
 position = Vector2(-1125, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameCam/LeftArea" unique_id=1918505152]
 shape = SubResource("RectangleShape2D_wqpan")
+
+[node name="Sprite" type="Sprite2D" parent="GameCam/LeftArea" unique_id=892621330]
+self_modulate = Color(0.044049747, 0.5218378, 0.66559947, 1)
+scale = Vector2(3.125, 37.5)
+texture = ExtResource("7_u5sy4")
 
 [connection signal="search_for_books" from="." to="." method="_on_search_for_books"]
 [connection signal="mouse_entered" from="GameCam/DownArea" to="GameCam" method="_on_down_area_mouse_entered"]

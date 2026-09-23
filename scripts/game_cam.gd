@@ -85,12 +85,14 @@ func move_to_location(index : int = 0) -> void:
 	move_cam(location.global_position)
 	move_cart(view)
 	current_view = view
+	hover_area_opacity()
 
 func move_to_scene(scene : String) -> void:
 	if scene == "" or scene == null: return
 	if location_dict.get(scene) == null: return
 	global_position = location_dict.get(scene).global_position
 	move_cart(scene)
+	hover_area_opacity()
 	
 func move_cart(new_view : String):
 	var x_pos_delta = get_tree().get_first_node_in_group("Game").book_cart.global_position.x - location_dict.get(new_view).global_position.x
@@ -112,3 +114,23 @@ func move_cart(new_view : String):
 		elif loc == new_view: cam_dict.get(new_view)[0] = "Cart"
 		else: cam_dict.get(loc)[0] = null
 	
+func hover_area_opacity() -> void:
+	for dir in range(0,4):
+		if cam_dict.get(current_view)[dir] == null:
+			if dir == 0:
+				$DownArea/Sprite.self_modulate.a8 = 24
+			if dir == 1:
+				$UpArea/Sprite.self_modulate.a8 = 24
+			if dir == 2:
+				$RightArea/Sprite.self_modulate.a8 = 24
+			if dir == 3:
+				$LeftArea/Sprite.self_modulate.a8 = 24
+		else:
+			if dir == 0:
+				$DownArea/Sprite.self_modulate.a8 = 210
+			if dir == 1:
+				$UpArea/Sprite.self_modulate.a8 = 210
+			if dir == 2:
+				$RightArea/Sprite.self_modulate.a8 = 210
+			if dir == 3:
+				$LeftArea/Sprite.self_modulate.a8 = 210
