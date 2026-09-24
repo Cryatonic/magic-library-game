@@ -14,8 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_prudj")
+slotted_book_mod = 4
 side_slot = true
-pos_offset = Vector2(0, 12)
+pos_offset = Vector2(0, 4.8)
 
 [node name="MouseHandle" parent="." unique_id=191069512 instance=ExtResource("1_135oh")]
 is_clickable = true

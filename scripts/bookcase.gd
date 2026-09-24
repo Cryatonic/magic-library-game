@@ -9,6 +9,7 @@ class_name Bookcase
 const Book_Scene : PackedScene = preload("uid://cj1wwxgpl60d5")
 
 var spawned_books : bool = false
+var held_books : Array[Book] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,13 +41,19 @@ func _process(_delta: float) -> void:
 			var blue = randf_range(0.2,1.0)
 			
 			bci_bc.add_child(b)
+			#held_books.append(b)
 			#await get_tree().process_frame
 			b.sprite_2d.modulate = Color(red,green,blue,1.0)
 			if s.pos_to_slot != s.global_position + s.pos_offset:
 				s.pos_to_slot = s.global_position + s.pos_offset
 			b.add_tag_visuals()
-			b.slot_book(s)
+			b.slot_book(s, false)
 			shelf_spot += 1
+		set_books_clickable(false)
+
+func set_books_clickable(toggle : bool):
+	for book : Book in held_books:
+		book.mouse_handle.is_clickable = toggle
 
 func test_add_tags(val : int, stren : int, b : Book) -> void:
 	if val == 0:

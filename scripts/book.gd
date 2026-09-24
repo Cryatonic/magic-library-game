@@ -39,7 +39,7 @@ var moving : bool = false
 var tween : Tween
 
 var scales : Array[Vector2] = [Vector2(1.0,1.0), Vector2(1.2,1.2),
-Vector2(0.85,0.85),Vector2(4.0,4.0)] #normal, selected, slotted, zoomed
+Vector2(0.85,0.85),Vector2(4.0,4.0), Vector2(0.4,0.4)] #normal, selected, slotted, zoomed
 var curr_scale : Vector2 = scales[0]
 
 # Called when the node enters the scene tree for the first time.
@@ -92,10 +92,13 @@ func flip_book(show_spine : bool = false) -> void:
 			if obj != self and obj is Book:
 				obj.flip_book_button.disabled = false
 		
-func move_book(pos : Vector2 = previous_glob_pos):
+func move_book(pos : Vector2 = previous_glob_pos, animate : bool = true):
 	kill_tween()
 	pos_to_go = pos
-	tween.tween_property(self, "global_position", pos_to_go, 0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	if animate:
+		tween.tween_property(self, "global_position", pos_to_go, 0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	else:
+		global_position = pos_to_go
 	moving = true
 	set_book_scale(0)
 	#sprite_2d.z_index = 1
@@ -171,13 +174,22 @@ func _on_click_interaction(_click_obj: Node) -> void:
 		slot = null
 		slot_facing = 0
 
-func slot_book(s : BaseSlot) -> void:
+func slot_book(s : BaseSlot, animate : bool = true) -> void:
 	if s == null: return
 	if s is CartSlot:
 		if not populate_cart_slot_with_tags(s):
 			return
+	
+	if slot is Bookcase_Slot:
+		var book_index = slot.get_parent().get_parent().held_books.find(self)
+		if book_index != -1:
+			#slot.get_parent().get_parent().held_books.pop_at(book_index)
+			slot.get_parent().get_parent().held_books.erase(self)
+	if s is Bookcase_Slot:
+		s.get_parent().get_parent().held_books.append(self)
+	
 	slot = s
-	move_book(s.pos_to_slot)
+	move_book(s.pos_to_slot, animate)
 	if s.side_slot:
 		slot_facing = sprite_2d.region_rect.size.x
 	else:
