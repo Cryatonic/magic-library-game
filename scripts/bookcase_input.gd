@@ -12,5 +12,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func focus_on_section(section : int) -> void:
+func focus_on_section(_section : int) -> void:
 	pass

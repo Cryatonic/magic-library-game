@@ -51,9 +51,22 @@ func _process(_delta: float) -> void:
 			shelf_spot += 1
 		set_books_clickable(false)
 
-func set_books_clickable(toggle : bool):
+func set_books_clickable(toggle : bool) -> void:
 	for book : Book in held_books:
 		book.mouse_handle.is_clickable = toggle
+
+func set_books_visible(toggle : bool) -> void:
+	for book : Book in held_books:
+		book.set_deferred("visible", toggle)
+
+func move_books(slot_scale : float, new_scale : int = -1) -> void:
+	for slot : Bookcase_Slot in grid_container.get_children():
+		slot.set_pos_to_slot(slot_scale)
+		if new_scale == -1: continue
+		slot.slotted_book_mod = new_scale
+	await get_tree().process_frame
+	for book : Book in held_books:
+		book.move_book(book.slot.global_position, false)
 
 func test_add_tags(val : int, stren : int, b : Book) -> void:
 	if val == 0:

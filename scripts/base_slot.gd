@@ -11,9 +11,10 @@ signal on_deselect
 @export var slotted_book_mod : int #Book scales index
 @export var side_slot : bool #true if slotted w/ spine face
 
-@export var pos_to_slot : Vector2
+#@export var pos_to_slot : Vector2
 @export var pos_offset : Vector2 = Vector2.ZERO #any offset to global pos for slotting
 
+@onready var pos_to_slot = $PosToSlot.global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +25,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	set_pos_to_slot()
 
-func set_pos_to_slot() -> void:
-	if pos_to_slot != global_position + pos_offset:
-		pos_to_slot = global_position + pos_offset
+func set_pos_to_slot(scale_mod : float = 1.0) -> void:
+	if pos_to_slot != $PosToSlot.global_position: pos_to_slot = $PosToSlot.global_position
+	#if pos_to_slot != global_position + (pos_offset * scale_mod):
+		#pos_to_slot = global_position + (pos_offset * scale_mod)

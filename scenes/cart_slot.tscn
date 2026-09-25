@@ -29,6 +29,8 @@ shape = SubResource("RectangleShape2D_wqpan")
 
 [node name="TagSpriteContainer" type="Node2D" parent="." unique_id=1841868052]
 
+[node name="PosToSlot" type="Marker2D" parent="." unique_id=676881760]
+
 [connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
 [connection signal="on_click" from="." to="." method="_on_on_click"]
 [connection signal="on_deselect" from="." to="." method="_on_on_deselect"]

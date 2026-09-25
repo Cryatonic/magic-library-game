@@ -39,7 +39,7 @@ var moving : bool = false
 var tween : Tween
 
 var scales : Array[Vector2] = [Vector2(1.0,1.0), Vector2(1.2,1.2),
-Vector2(0.85,0.85),Vector2(4.0,4.0), Vector2(0.4,0.4)] #normal, selected, slotted, zoomed
+Vector2(0.85,0.85),Vector2(4.0,4.0), Vector2(0.4,0.4)] #normal, selected, slotted, zoomed, unfocused
 var curr_scale : Vector2 = scales[0]
 
 # Called when the node enters the scene tree for the first time.
@@ -109,6 +109,7 @@ func kill_tween() -> void:
 	tween = create_tween()
 	
 func set_book_scale(val : int) -> void:
+	if val < 0 or val >= scales.size(): return
 	curr_scale = scales[val]
 	set_deferred("scale", curr_scale)
 
