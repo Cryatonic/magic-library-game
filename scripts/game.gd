@@ -36,16 +36,18 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_search_for_books() -> Array[String]:
+func _on_search_for_books() -> Array[Book]:
 	if searching_subjects.size() == 0:
 		print("Empty.")
 		return []
 	
-	var matching_books : Array[String] = []
+	#var matching_books : Array[String] = []
+	var matching_books : Array[Book] = []
 	
 	for book : Book in subjects_dict[searching_subjects[0]]:
 		if compare_subjects(book):
-			matching_books.append(book.location_label.text)
+			#matching_books.append(book.location_label.text)
+			matching_books.append(book)
 			
 	
 	#if matching_books.size() == 0:

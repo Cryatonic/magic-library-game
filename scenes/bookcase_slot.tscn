@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dev8fyvixfmcl" path="res://scenes/mouse_handle.tscn" id="1_135oh"]
 [ext_resource type="Script" uid="uid://dje266k7tv3rg" path="res://scripts/bookcase_slot.gd" id="1_prudj"]
-[ext_resource type="PackedScene" uid="uid://cj1wwxgpl60d5" path="res://scenes/book.tscn" id="3_0jr2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1scci"]
 size = Vector2(8, 32)
@@ -26,11 +25,7 @@ is_clickable = true
 shape = SubResource("RectangleShape2D_1scci")
 
 [node name="PosToSlot" type="Marker2D" parent="." unique_id=104319990]
-position = Vector2(0, 4)
-
-[node name="Book" parent="PosToSlot" unique_id=1188724431 instance=ExtResource("3_0jr2b")]
-visible = false
-scale = Vector2(0.083, 0.083)
+position = Vector2(0, 2)
 
 [connection signal="click_interaction" from="." to="." method="_on_click_interaction"]
 [connection signal="on_click" from="." to="." method="_on_on_click"]

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bqr8tpbgg76e6"]
+
+[ext_resource type="Script" uid="uid://q84e7ox5ykr5" path="res://scripts/bookcase_section.gd" id="1_n2kyq"]
+[ext_resource type="PackedScene" uid="uid://dsfdpw5oyeusa" path="res://scenes/bookcase.tscn" id="1_uqxsv"]
+[ext_resource type="Texture2D" uid="uid://u31bbtas2n1i" path="res://assets/sprites/shelf-tags.png" id="2_n2kyq"]
+
+[node name="Section" type="Node2D" unique_id=1712117642]
+script = ExtResource("1_n2kyq")
+
+[node name="Bookcase1" parent="." unique_id=301247951 instance=ExtResource("1_uqxsv")]
+position = Vector2(-704, 0)
+case_num = 1
+
+[node name="Bookcase2" parent="." unique_id=88975974 instance=ExtResource("1_uqxsv")]
+case_num = 2
+
+[node name="Bookcase3" parent="." unique_id=275523012 instance=ExtResource("1_uqxsv")]
+position = Vector2(704, 0)
+case_num = 3
+
+[node name="Button" type="Button" parent="." unique_id=1062030584]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="SectionSprite" type="Sprite2D" parent="." unique_id=1140741960]
+position = Vector2(0, -632)
+scale = Vector2(4, 4)
+texture = ExtResource("2_n2kyq")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]

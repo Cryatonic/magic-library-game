@@ -32,9 +32,23 @@ func _on_search_pressed() -> void:
 		search_results.add_text("No Matches")
 		return
 	var book_count : int = 0
-	for location in books:
-		search_results.add_text(location + "            ")
+	var texture = preload("uid://u31bbtas2n1i")
+	var current_sect = books[0].section_tag_val
+	var just_looped : bool = false
+	for location : Book in books:
+		if location.section_tag_val != current_sect:
+			current_sect = location.section_tag_val
+			search_results.newline()
+			if not just_looped:
+				search_results.newline()
+				search_results.newline()
+			book_count = -1
+		just_looped = false
+		search_results.add_image(texture, 8, 8, Color.WHITE, INLINE_ALIGNMENT_CENTER, location.section_tag_sprite.region_rect, "Section Tag")
+		search_results.add_text(location.location_label.text + "            ")
 		book_count += 1
-		if book_count % 3 == 0:
+		if book_count == 0: book_count += 1
+		elif book_count % 3 == 0:
 			search_results.newline()
 			search_results.newline()
+			just_looped = true

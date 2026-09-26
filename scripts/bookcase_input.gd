@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func focus_on_section(section : Bookcase_Section, toggle : bool) -> void:
+func focus_on_section(section : Bookcase_Section = null, toggle : bool = false) -> void:
 	if toggle:
 		focused_section = section
 		for sec : Bookcase_Section in get_children():

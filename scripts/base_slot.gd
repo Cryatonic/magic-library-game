@@ -25,7 +25,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	set_pos_to_slot()
 
-func set_pos_to_slot(scale_mod : float = 1.0) -> void:
+func set_pos_to_slot(_scale_mod : float = 1.0) -> void:
 	if pos_to_slot != $PosToSlot.global_position: pos_to_slot = $PosToSlot.global_position
 	#if pos_to_slot != global_position + (pos_offset * scale_mod):
 		#pos_to_slot = global_position + (pos_offset * scale_mod)

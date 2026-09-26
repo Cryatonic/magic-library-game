@@ -83,6 +83,7 @@ func move_to_location(index : int = 0) -> void:
 	if location == null: return
 	
 	move_cam(location.global_position)
+	scene_change_effect(view)
 	move_cart(view)
 	current_view = view
 	hover_area_opacity()
@@ -91,6 +92,7 @@ func move_to_scene(scene : String) -> void:
 	if scene == "" or scene == null: return
 	if location_dict.get(scene) == null: return
 	global_position = location_dict.get(scene).global_position
+	scene_change_effect(scene)
 	move_cart(scene)
 	hover_area_opacity()
 	
@@ -113,7 +115,11 @@ func move_cart(new_view : String):
 		if loc == "Cart": cam_dict.get(loc)[1] = new_view
 		elif loc == new_view: cam_dict.get(new_view)[0] = "Cart"
 		else: cam_dict.get(loc)[0] = null
-	
+
+func scene_change_effect(scene : String = "") -> void:
+	if scene == "Counter":
+		get_tree().get_first_node_in_group("Game").get_node("Bookcase_Input").focus_on_section()
+
 func hover_area_opacity() -> void:
 	for dir in range(0,4):
 		if cam_dict.get(current_view)[dir] == null:
