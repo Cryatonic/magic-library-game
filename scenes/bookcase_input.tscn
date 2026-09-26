@@ -55,6 +55,20 @@ case_num = 2
 position = Vector2(704, 0)
 case_num = 3
 
+[node name="Button" type="Button" parent="Section1" unique_id=918978249]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
 [node name="Section2" type="Node2D" parent="." unique_id=2055690092]
 position = Vector2(640, 320)
 scale = Vector2(0.4, 0.4)
@@ -71,6 +85,20 @@ case_num = 2
 [node name="Bookcase3" parent="Section2" unique_id=1297482401 instance=ExtResource("1_6petg")]
 position = Vector2(704, 0)
 case_num = 3
+
+[node name="Button" type="Button" parent="Section2" unique_id=747899890]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
 
 [node name="Section3" type="Node2D" parent="." unique_id=1144886147]
 position = Vector2(640, -320)
@@ -89,4 +117,21 @@ case_num = 2
 position = Vector2(704, 0)
 case_num = 3
 
+[node name="Button" type="Button" parent="Section3" unique_id=1758146140]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
 [connection signal="toggled" from="Section0/Button" to="Section0" method="_on_button_toggled"]
+[connection signal="toggled" from="Section1/Button" to="Section1" method="_on_button_toggled"]
+[connection signal="toggled" from="Section2/Button" to="Section2" method="_on_button_toggled"]
+[connection signal="toggled" from="Section3/Button" to="Section3" method="_on_button_toggled"]

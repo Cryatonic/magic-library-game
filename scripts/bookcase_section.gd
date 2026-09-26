@@ -15,18 +15,36 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_toggled(toggled_on: bool) -> void:
-	if toggled_on:
+	$"../".focus_on_section(self, toggled_on)
+
+func set_focus(toggle : String = "") -> void:
+	if toggle == "": return
+	
+	if toggle == "focus":
 		position = Vector2.ZERO
 		set_deferred("scale", Vector2(1.0,1.0))
 		for each in get_children():
-			if each is not Bookcase: continue
+			if each is not Bookcase: 
+				each.visible = true
+				continue
 			each.move_books(1.0, 0)
 			each.set_books_clickable(true)
-		for section : Bookcase_Section in $"../".get_children():
-			if section == self: continue
-			section.visible = false
-			for each in section.get_children():
-				if each is not Bookcase: continue
-				each.set_books_visible(false)
-	else:
+	elif toggle == "hidden":
+		visible = false
+		for each in get_children():
+			if each is not Bookcase: 
+				each.visible = false
+				continue
+			each.set_books_clickable(false)
+			each.set_books_visible(false)
+	elif toggle == "unfocused":
+		visible = true
 		position = input_position
+		set_deferred("scale", Vector2(0.4,0.4))
+		for each in get_children():
+			if each is not Bookcase: 
+				each.visible = true
+				continue
+			each.move_books(0.4, 4)
+			each.set_books_visible(true)
+			each.set_books_clickable(false)
